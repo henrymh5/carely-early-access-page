@@ -1,11 +1,18 @@
+import type { CSSProperties } from "react";
+import Link from "next/link";
+
 export default function CarelyLaunchSignupPage() {
   const brand = "#0d7377";
   const brandDark = "#0a5c5f";
   const brandLight = "#e8f6f6";
   const brandMid = "#cfeeee";
+  const cssVars = {
+    ["--brand" as unknown as keyof CSSProperties]: brand,
+    ["--brand-soft" as unknown as keyof CSSProperties]: `${brand}1a`,
+  } as CSSProperties;
 
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="min-h-screen bg-white text-slate-900" style={cssVars}>
       <section
         className="relative overflow-hidden"
         style={{
@@ -27,7 +34,7 @@ export default function CarelyLaunchSignupPage() {
           />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-24">
+        <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 md:px-10 md:py-20">
           <nav className="mb-14 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div
@@ -113,14 +120,14 @@ export default function CarelyLaunchSignupPage() {
 
             <div className="relative">
               <div
-                className="rounded-[2rem] bg-white p-5 shadow-2xl md:p-7"
+                className="rounded-[2rem] bg-white p-1 shadow-2xl md:p-7"
                 style={{
                   border: `1px solid ${brandLight}`,
                   boxShadow: "0 20px 60px rgba(13,115,119,0.12)",
                 }}
               >
                 <div
-                  className="rounded-[1.5rem] p-6 text-white md:p-8"
+                  className="rounded-[1.5rem] p-4 text-white md:p-8"
                   style={{
                     background: `linear-gradient(135deg, ${brand} 0%, ${brandDark} 100%)`,
                   }}
@@ -143,7 +150,7 @@ export default function CarelyLaunchSignupPage() {
                     Erste:r zu testen.
                   </p>
 
-                  <div className="mt-8 rounded-3xl bg-white p-5 text-slate-900 shadow-xl">
+                  <div className="mt-8 rounded-3xl bg-white p-2 py-5 text-slate-900 shadow-xl sm:p-5">
                     <form id="signup" className="space-y-4">
                       <div>
                         <label className="mb-2 block text-sm font-medium text-slate-700">
@@ -153,11 +160,6 @@ export default function CarelyLaunchSignupPage() {
                           type="text"
                           placeholder="Dein Vorname"
                           className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[var(--brand)] focus:ring-4 focus:ring-[var(--brand-soft)]"
-                          style={
-                            {
-                              // CSS vars used in globals for focus styles
-                            }
-                          }
                         />
                       </div>
                       <div>
@@ -202,7 +204,7 @@ export default function CarelyLaunchSignupPage() {
 
       <section
         id="benefits"
-        className="mx-auto max-w-7xl px-6 py-18 md:px-10 md:py-24"
+        className="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:px-10 md:py-20"
       >
         <div className="mx-auto max-w-2xl text-center">
           <span
@@ -225,14 +227,58 @@ export default function CarelyLaunchSignupPage() {
             {
               title: "Passende Jobs schneller finden",
               text: "Weniger Suchen, mehr relevante Angebote — zugeschnitten auf deine Wünsche und Verfügbarkeit.",
+              icon: (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-6 w-6"
+                  aria-hidden="true"
+                >
+                  <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z" />
+                </svg>
+              ),
             },
             {
               title: "Mehr Transparenz",
               text: "Klare Informationen zu Aufgaben, Arbeitszeiten und Rahmenbedingungen schon vor der Bewerbung.",
+              icon: (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-6 w-6"
+                  aria-hidden="true"
+                >
+                  <path d="M12 22s8-4 8-10V6l-8-3-8 3v6c0 6 8 10 8 10Z" />
+                  <path d="M9 12h6" />
+                  <path d="M12 9v6" />
+                </svg>
+              ),
             },
             {
               title: "Menschlicher Prozess",
               text: "Eine Plattform, die Pflegekräfte respektiert und den Bewerbungsprozess einfacher macht.",
+              icon: (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-6 w-6"
+                  aria-hidden="true"
+                >
+                  <path d="M12 21s-7-4.5-9-9a5.5 5.5 0 0 1 9-4 5.5 5.5 0 0 1 9 4c-2 4.5-9 9-9 9Z" />
+                </svg>
+              ),
             },
           ].map((feature) => (
             <div
@@ -240,9 +286,11 @@ export default function CarelyLaunchSignupPage() {
               className="rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
             >
               <div
-                className="mb-4 h-12 w-12 rounded-2xl"
-                style={{ backgroundColor: brandLight }}
-              />
+                className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl"
+                style={{ backgroundColor: brandLight, color: brand }}
+              >
+                {feature.icon}
+              </div>
               <h3 className="text-xl font-semibold tracking-tight text-slate-900">
                 {feature.title}
               </h3>
@@ -252,7 +300,7 @@ export default function CarelyLaunchSignupPage() {
         </div>
       </section>
 
-      <section className="px-6 pb-20 md:px-10">
+      <section className="px-4 pb-14 sm:px-6 md:px-10 md:pb-20">
         <div
           className="mx-auto max-w-6xl rounded-[2rem] px-8 py-12 text-white shadow-2xl md:px-12 md:py-16"
           style={{
@@ -285,6 +333,56 @@ export default function CarelyLaunchSignupPage() {
           </div>
         </div>
       </section>
+
+      <footer className="border-t border-slate-200/70 bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-12 md:px-10">
+          <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-start">
+            <div>
+              <div className="flex items-center gap-3">
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-2xl text-base font-bold text-white shadow-sm"
+                  style={{ backgroundColor: brand }}
+                >
+                  C
+                </div>
+                <div>
+                  <p className="text-base font-semibold tracking-tight">
+                    Carely
+                  </p>
+                  <p className="text-sm text-slate-600">
+                    Jobs für Pflegekräfte
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 max-w-xl text-sm leading-6 text-slate-600">
+                Carely verbindet Pflegekräfte mit passenden Jobs — einfacher,
+                menschlicher und schneller.
+              </p>
+              <p className="mt-6 text-xs text-slate-500">
+                © {new Date().getFullYear()} Carely. Alle Rechte vorbehalten.
+              </p>
+            </div>
+
+            <div className="md:justify-self-end">
+              <p className="text-sm font-semibold text-slate-900">Rechtliches</p>
+              <div className="mt-4 flex flex-col gap-3 text-sm">
+                <Link
+                  href="/impressum"
+                  className="text-slate-600 transition hover:text-slate-900"
+                >
+                  Impressum
+                </Link>
+                <Link
+                  href="/datenschutz"
+                  className="text-slate-600 transition hover:text-slate-900"
+                >
+                  Datenschutz
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
